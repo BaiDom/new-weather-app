@@ -52,18 +52,19 @@
 
 .temp {
   color: #fff;
-  font-size: 80px;
+  font-size: 50px;
   line-height: 1;
 }
 
-.temp-data {
-  width: 100%;
-  height: 70px;
+.forecast .forecast-td {
+  width: 400px;
+  height: 110px;
   padding: 10px;
   background-color: #ebfffc;
   color: #1a1a1a;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 10px;
   box-shadow: 0px 0px 3px 2px rgb(125, 125, 125);
 }
@@ -74,6 +75,7 @@
   align-items: center;
   justify-content: center;
   padding-inline: 10px;
+  font-size: 21px;
 }
 
 .td-item.min-temp {
@@ -90,7 +92,7 @@
 }
 
 .weather-data {
-  width: 100%;
+  width: 400px;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -111,4 +113,96 @@
 .weather-data .col img {
   width: 26px;
   margin-top: 10px;
+}
+
+.forecast {
+  color: #fff;
+  display: flex;
+  font-size: 14px;
+  gap: 10px;
+  width: 400px;
+  height: 110px;
+  padding: 10px;
+  background-color: #ebfffc;
+  color: #1a1a1a;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px 2px rgb(125, 125, 125);
+}
+
+.forecast > div > p:first-of-type {
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.forecast > div > p:nth-of-type(2) {
+  padding-top: 5px;
+}
+
+.five-day-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.five-day-hum,
+.five-day-wind {
+  display: flex;
+  align-items: center;
+}
+
+.five-day-hum-img,
+.five-day-wind-img {
+  filter: invert(1);
+  height: 15px;
+  padding-right: 5px;
+}
+
+#forecast-button {
+  cursor: pointer;
+  color: #1a1a1a;
+  font-weight: 500;
+  background-color: #8390fa;
+  border: 1px solid #ebfffc;
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.forecast-td.forecast-td {
+  width: 400px;
+  min-height: 110px;
+  height: 110px;
+  padding: 10px;
+  background-color: #ebfffc;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px 2px rgb(125, 125, 125);
+}
+
+.forecast-td.forecast-td .td-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 10px;
+  font-size: 21px;
+}
+
+.td-item.min-temp {
+  border-inline: 1px solid black;
 }
