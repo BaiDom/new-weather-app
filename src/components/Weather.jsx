@@ -60,6 +60,7 @@ const Weather = () => {
         icon: icon,
         weatherMain: data.weather[0].main,
         weatherDesc: data.weather[0].description,
+        date: data.dt,
       });
     } catch (error) {
       console.log(error);
@@ -70,12 +71,17 @@ const Weather = () => {
     }
   };
 
+  let dateString = Date(weatherData.date).toLocaleString();
+  let trimDate = dateString.split(" ").slice(0, 4).join(" ");
+
   useEffect(() => {
     search("Liverpool");
   }, []);
 
   return (
     <div className="weather">
+      <p className="date">{trimDate}</p>
+
       <div className="search-bar">
         <input
           ref={inputRef}
@@ -97,9 +103,8 @@ const Weather = () => {
         <>
           <img src={weatherData.icon} alt="" className="weather-icon" />
           <p className="location">{weatherData.location}</p>
-
           <p className="weather-main">{weatherData.weatherMain}</p>
-          <p className="weather-desc">({weatherData.weatherDesc})</p>
+          {/* <p className="weather-desc">({weatherData.weatherDesc})</p> */}
           <p className="temp">{weatherData.temperature}°C</p>
           <div className="temp-data">
             <div className="td-item feels-like">
