@@ -96,16 +96,15 @@ const Weather = () => {
       }
 
       const forecastedList = forecasted.list;
+      console.log(forecastedList, "list");
 
       const processWeatherData = (forecastedList) => {
         return forecastedList.map((item) => {
           const date = new Date(item.dt * 1000);
           const dateDay = date.toDateString().split(" ").slice(0, 1).join(" ");
           const dateNum = date.toDateString().split(" ").slice(2, 3).join(" ");
-          console.log(
-            date.toDateString().split(" ").slice(2, 3).join(" "),
-            "date string"
-          );
+          const forecastIcon = allIcons[item.weather[0].icon] || clear_icon;
+
           return {
             date: dateDay + " " + dateNum,
             time: date.toTimeString().split(" ")[0],
@@ -114,6 +113,7 @@ const Weather = () => {
             description: item.weather[0].description,
             windSpeed: item.wind.speed,
             humidity: item.main.humidity,
+            icon: forecastIcon,
           };
         });
       };
@@ -163,9 +163,28 @@ const Weather = () => {
           <p className="location">{weatherData.location}</p>
           <p className="temp">{weatherData.temperature}°C</p>
           <img src={weatherData.icon} alt="" className="weather-icon" />
-          <p className="weather-main">{weatherData.weatherMain}</p>
+
+          <div className="weather-data">
+            <div className="col">
+              <img src={humidity_icon} alt="" />
+              <div className="col-cont">
+                <p>{weatherData.humidity}%</p>
+                <span>Humidity</span>
+              </div>
+            </div>
+            <div className="col">
+              <p className="weather-main">{weatherData.weatherMain}</p>
+            </div>
+            <div className="col">
+              <img src={wind_icon} alt="" />
+              <div className="col-cont">
+                <p>{weatherData.windSpeed} km/h</p>
+                <span>Wind Speed</span>
+              </div>
+            </div>
+          </div>
           <div
-            id="forecast-button"
+            id={showForecast ? "forecast-button-dark" : "forecast-button"}
             onClick={() => setShowForecast(!showForecast)}
           >
             {showForecast && <div>Today</div>}
@@ -181,6 +200,12 @@ const Weather = () => {
                         <p className="forecast-date">{forecast.date}</p>
                         {/* <p>Time: {forecast.time}</p> */}
                         <p>{Math.round(forecast.temperature)}°C</p>
+                        <img
+                          src={forecast.icon}
+                          alt=""
+                          className="forecast-weather-icon"
+                        />
+
                         <p>{forecast.weather}</p>
                         <p className="five-day-hum">
                           <img
@@ -216,23 +241,6 @@ const Weather = () => {
               </div>
             </div>
           )}
-
-          <div className="weather-data">
-            <div className="col">
-              <img src={humidity_icon} alt="" />
-              <div>
-                <p>{weatherData.humidity}%</p>
-                <span>Humidity</span>
-              </div>
-            </div>
-            <div className="col">
-              <img src={wind_icon} alt="" />
-              <div>
-                <p>{weatherData.windSpeed} km/h</p>
-                <span>Wind Speed</span>
-              </div>
-            </div>
-          </div>
         </>
       ) : (
         <></>
